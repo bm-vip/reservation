@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="0403-1" author="behrooz">
+        <loadData file="db/data/tbl_available_slots.csv" tableName = "tbl_available_slots" >
+            <column header="id" name="id" type="bigint" />
+            <column header="created_by" name="created_by" type="VARCHAR(255)"/>
+            <column header="created_date" name="created_date" type="DATETIME"/>
+            <column header="modified_by" name="modified_by" type="VARCHAR(255)"/>
+            <column header="modified_date" name="modified_date" type="DATETIME"/>
+            <column header="version" name="version" type="integer"/>
+            <column header="start_time" name="start_time" type="DATETIME"/>
+            <column header="end_time" name="end_time" type="DATETIME"/>
+            <column header="is_reserved" name="is_reserved" type="BOOLEAN"/>
+            <column header="reserved_by" name="reserved_by" type="UUID"/>
+            <column header="reserved_at" name="reserved_at" type="DATETIME"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="0403-2" author="behrooz">
+        <sql dbms="postgresql">select setval('seq_available_slots', max(id)+1) from tbl_available_slots</sql>
+        <sql dbms="h2">alter sequence seq_available_slots restart with (select max(id)+1 from tbl_available_slots)</sql>
+    </changeSet>
+</databaseChangeLog>

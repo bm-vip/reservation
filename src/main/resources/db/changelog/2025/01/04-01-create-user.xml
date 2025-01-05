@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="0401-1" author="behrooz">
+        <createTable tableName="tbl_user">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tbl_user"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column defaultValueNumeric="0" name="version" type="integer"/>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="0401-2" author="behrooz">
+        <addUniqueConstraint columnNames="email" constraintName="uc_tbl_user_email" tableName="tbl_user"/>
+    </changeSet>
+    <changeSet id="0401-3" author="behrooz">
+        <addUniqueConstraint columnNames="username" constraintName="uc_tbl_user_username" tableName="tbl_user"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+# Spring Boot configuration
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    root:
+    org:
+      springframework:
+        web:
+        security:
+      hibernate:
+    guru:
+      springframework:
+        controllers:
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %-5level [traceId:%X{traceId:-}, clientIp:%X{clientIp:-}] %logger{36} - %msg%n"
+
+openapi:
+  server:
+    url: http://localhost:8080

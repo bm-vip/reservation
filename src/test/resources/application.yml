@@ -1,0 +1,55 @@
+# Spring Boot configuration
+spring:
+  main:
+    web-application-type: none
+  application:
+    name: banking
+    version: 0.0.1-SNAPSHOT
+  liquibase.change-log: "classpath:/db/changelog/master.xml"
+  messages:
+    basename: i18n.messages
+    encoding: UTF-8
+  # Database
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:banking_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: password
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    open-in-view: false
+    generate-ddl: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: "UTC"
+
+#Logging
+logging:
+  file:
+    path: logs/
+    name: logs/app.log
+#    max-size: 20MB
+#    max-history: 180
+#    clean-history-on-start: true
+  level:
+    root:
+    org:
+      springframework:
+        web:
+        security:
+      hibernate:
+    guru:
+      springframework:
+        controllers:
+  pattern:
+#    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %-5level [traceId:%X{traceId:-}, clientIp:%X{clientIp:-}] %logger{36} - %msg%n"
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    rolling-file-name: logs/app-%d{yyyy-MM-dd-HH}.%i.log
