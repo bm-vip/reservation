@@ -3,7 +3,7 @@ spring:
   main:
     web-application-type: none
   application:
-    name: banking
+    name: reservation
     version: 0.0.1-SNAPSHOT
   liquibase.change-log: "classpath:/db/changelog/master.xml"
   messages:
@@ -12,7 +12,7 @@ spring:
   # Database
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:banking_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:reservation_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password: password
   # JPA properties
